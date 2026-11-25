@@ -1,0 +1,30 @@
+{
+  "name": "korevia-client-portal",
+  "version": "0.1.0",
+  "private": true,
+  "description": "KoreVia client portal: module progress, test evidence and acceptance for M-Powered Pathways",
+  "engines": { "node": ">=22" },
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "typecheck": "tsc --noEmit",
+    "test:db": "./scripts/test-db.sh",
+    "test:unit": "node --experimental-strip-types --test scripts/*.test.ts"
+  },
+  "dependencies": {
+    "@supabase/ssr": "0.12.7",
+    "@supabase/supabase-js": "2.119.2",
+    "next": "16.4.6",
+    "react": "19.3.1",
+    "react-dom": "19.3.1",
+    "server-only": "^0.0.1",
+    "zod": "4.6.7"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "@types/react": "19.3.1",
+    "@types/react-dom": "19.3.0",
+    "typescript": "5.9.3"
+  }
+}

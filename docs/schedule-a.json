@@ -1,0 +1,872 @@
+[
+ {
+  "n": 1,
+  "name": "Platform & Security & Data",
+  "features": [
+   {
+    "title": "Practice sign-up, email verification & unique subdomain claim for each business client",
+    "tier": "core",
+    "phase": 1,
+    "note": ""
+   },
+   {
+    "title": "Add practitioners, location & admin staff with role-based access control",
+    "tier": "core",
+    "phase": 1,
+    "note": ""
+   },
+   {
+    "title": "Two-factor authentication",
+    "tier": "core",
+    "phase": 1,
+    "note": ""
+   },
+   {
+    "title": "Audit logging (platform baseline)",
+    "tier": "core",
+    "phase": 1,
+    "note": ""
+   },
+   {
+    "title": "Australian data residency, backups & secure storage",
+    "tier": "core",
+    "phase": 1,
+    "note": ""
+   },
+   {
+    "title": "Subscription tier selection",
+    "tier": "core",
+    "phase": 1,
+    "note": ""
+   },
+   {
+    "title": "Basic billing connection: Stripe + Xero",
+    "tier": "optional",
+    "phase": 2,
+    "note": "internal SaaS subscription billing only — not client/practitioner invoicing"
+   }
+  ],
+  "ai": "AI ASSIST — AI monitors login activity and audit logs, flagging unusual access patterns for review.",
+  "amount": 5000
+ },
+ {
+  "n": 2,
+  "name": "Client & Case Management",
+  "features": [
+   {
+    "title": "Master participant status path",
+    "tier": "core",
+    "phase": 1,
+    "note": ""
+   },
+   {
+    "title": "Profile photo on participant record",
+    "tier": "core",
+    "phase": 1,
+    "note": ""
+   },
+   {
+    "title": "Structured document folders per client",
+    "tier": "core",
+    "phase": 1,
+    "note": ""
+   },
+   {
+    "title": "Clinician nomination / assignment",
+    "tier": "core",
+    "phase": 1,
+    "note": ""
+   },
+   {
+    "title": "Practitioner governance/compliance document area",
+    "tier": "optional",
+    "phase": 2,
+    "note": ""
+   }
+  ],
+  "ai": "AI ASSIST — AI flags incomplete participant records and missing documents, and auto-files uploads into the correct client folder.",
+  "amount": 1100
+ },
+ {
+  "n": 3,
+  "name": "Intake & Referral",
+  "features": [
+   {
+    "title": "Referral capture (portal, email, or manual entry)",
+    "tier": "core",
+    "phase": 1,
+    "note": ""
+   },
+   {
+    "title": "AI-assisted intake extraction",
+    "tier": "optional",
+    "phase": 2,
+    "note": ""
+   },
+   {
+    "title": "Triage: scope, capacity, location, complexity, risk, conflict of interest",
+    "tier": "core",
+    "phase": 1,
+    "note": ""
+   },
+   {
+    "title": "Funding-feasibility check at triage",
+    "tier": "core",
+    "phase": 1,
+    "note": ""
+   },
+   {
+    "title": "Referral decision & rationale logging",
+    "tier": "core",
+    "phase": 1,
+    "note": ""
+   },
+   {
+    "title": "Restrictive-practice screening at referral",
+    "tier": "core",
+    "phase": 1,
+    "note": ""
+   },
+   {
+    "title": "Mandatory exact funding capture (to the cent)",
+    "tier": "core",
+    "phase": 1,
+    "note": ""
+   },
+   {
+    "title": "Funding breakdown Y/N + interval count",
+    "tier": "core",
+    "phase": 1,
+    "note": ""
+   },
+   {
+    "title": "Funding-management type capture",
+    "tier": "core",
+    "phase": 1,
+    "note": ""
+   },
+   {
+    "title": "Funding lock / shareability logic",
+    "tier": "core",
+    "phase": 1,
+    "note": ""
+   },
+   {
+    "title": "Participant/referrer NDIS plan upload",
+    "tier": "optional",
+    "phase": 2,
+    "note": ""
+   }
+  ],
+  "ai": "AI ASSIST — AI extracts and organises referral information and pre-fills administrative intake fields (e.g. identity details, funding and dates). Practitioners complete risk, clinical suitability, capacity and conflict-of-interest assessments.",
+  "amount": 2400
+ },
+ {
+  "n": 4,
+  "name": "Service Agreements & Consent",
+  "features": [
+   {
+    "title": "Consent capture (treatment, data sharing, telehealth)",
+    "tier": "core",
+    "phase": 1,
+    "note": ""
+   },
+   {
+    "title": "Decision-maker / guardian & nominee arrangements",
+    "tier": "core",
+    "phase": 1,
+    "note": ""
+   },
+   {
+    "title": "Template-based service agreement generation",
+    "tier": "core",
+    "phase": 1,
+    "note": ""
+   },
+   {
+    "title": "Mandatory Schedule of Support",
+    "tier": "core",
+    "phase": 1,
+    "note": ""
+   },
+   {
+    "title": "Schedule of Support / funding-feasibility calculator",
+    "tier": "core",
+    "phase": 1,
+    "note": ""
+   },
+   {
+    "title": "Standardised schedule template (assessment / report-only)",
+    "tier": "core",
+    "phase": 1,
+    "note": ""
+   },
+   {
+    "title": "Digital signature capture",
+    "tier": "core",
+    "phase": 1,
+    "note": ""
+   },
+   {
+    "title": "Manual sign fallback (print / scan / upload)",
+    "tier": "core",
+    "phase": 1,
+    "note": ""
+   },
+   {
+    "title": "NDIS plan details entry (dates, category, opening balance)",
+    "tier": "core",
+    "phase": 1,
+    "note": ""
+   },
+   {
+    "title": "Auto-notify clinician when client is ready",
+    "tier": "core",
+    "phase": 1,
+    "note": ""
+   }
+  ],
+  "ai": "AI ASSIST — AI pre-fills the service agreement and Schedule of Support from the NDIS plan and funding details already captured, cutting manual drafting time.",
+  "amount": 2200
+ },
+ {
+  "n": 5,
+  "name": "Assessment & Behaviour Support Plan Development",
+  "features": [
+   {
+    "title": "Digital intake / initial-consult checklists",
+    "tier": "core",
+    "phase": 1,
+    "note": ""
+   },
+   {
+    "title": "Auto-PDF generation on submission",
+    "tier": "core",
+    "phase": 1,
+    "note": ""
+   },
+   {
+    "title": "Existing-records collection with outstanding-document tracker",
+    "tier": "core",
+    "phase": 1,
+    "note": ""
+   },
+   {
+    "title": "Stakeholder / MDT consultation feeding the assessment",
+    "tier": "optional",
+    "phase": 2,
+    "note": ""
+   },
+   {
+    "title": "Immediate risk & safety assessment",
+    "tier": "core",
+    "phase": 1,
+    "note": ""
+   },
+   {
+    "title": "Interim Behaviour Support Plan",
+    "tier": "core",
+    "phase": 1,
+    "note": ""
+   },
+   {
+    "title": "Functional/behavioural assessment from a template library",
+    "tier": "core",
+    "phase": 1,
+    "note": ""
+   },
+   {
+    "title": "Draft-plan consultation with participant/family/providers",
+    "tier": "core",
+    "phase": 1,
+    "note": ""
+   },
+   {
+    "title": "Secure sharing of finalised plan for sign-off",
+    "tier": "core",
+    "phase": 1,
+    "note": ""
+   },
+   {
+    "title": "Restrictive practice reduction plan",
+    "tier": "core",
+    "phase": 1,
+    "note": ""
+   },
+   {
+    "title": "NDIS Commission lodgement & state/territory authorisation tracking",
+    "tier": "core",
+    "phase": 1,
+    "note": ""
+   }
+  ],
+  "ai": "AI ASSIST — Practitioner-completed Interim BSP, functional assessment and Behaviour Support Plan templates may be pre-filled with non-clinical details only. The practitioner prepares all clinical analysis, findings, strategies and recommendations.",
+  "amount": 2400
+ },
+ {
+  "n": 6,
+  "name": "Documentation & Case Notes",
+  "features": [
+   {
+    "title": "Flexible digital form builder",
+    "tier": "core",
+    "phase": 1,
+    "note": ""
+   },
+   {
+    "title": "Structured session notes (clinical / strategies / attachments tabs)",
+    "tier": "core",
+    "phase": 1,
+    "note": ""
+   },
+   {
+    "title": "Consult-type categorisation",
+    "tier": "core",
+    "phase": 1,
+    "note": ""
+   },
+   {
+    "title": "ABC data capture fields",
+    "tier": "core",
+    "phase": 1,
+    "note": ""
+   },
+   {
+    "title": "AI note transcription during session",
+    "tier": "core",
+    "phase": 1,
+    "note": ""
+   },
+   {
+    "title": "AI tally/summary of practitioner entered ABC data",
+    "tier": "core",
+    "phase": 1,
+    "note": ""
+   }
+  ],
+  "ai": "AI ASSIST — AI transcribes and structures practitioner provided session notes and tallies practitioner-entered ABC data without interpreting clinical trends, assessing behaviour or recommending treatment.",
+  "amount": 1300
+ },
+ {
+  "n": 7,
+  "name": "Scheduling & Delivery",
+  "features": [
+   {
+    "title": "Multi-practitioner scheduling with day/week/month views",
+    "tier": "core",
+    "phase": 1,
+    "note": ""
+   },
+   {
+    "title": "Session delivery: in person & telehealth",
+    "tier": "core",
+    "phase": 1,
+    "note": ""
+   },
+   {
+    "title": "In-CRM calendar (client-linked bookings)",
+    "tier": "core",
+    "phase": 1,
+    "note": ""
+   },
+   {
+    "title": "Per-practitioner appointment-duration rules by consult type",
+    "tier": "core",
+    "phase": 1,
+    "note": ""
+   },
+   {
+    "title": "Travel-time-aware booking",
+    "tier": "core",
+    "phase": 1,
+    "note": ""
+   },
+   {
+    "title": "Automated appointment reminders",
+    "tier": "core",
+    "phase": 1,
+    "note": ""
+   },
+   {
+    "title": "SMS reminders + templates",
+    "tier": "core",
+    "phase": 1,
+    "note": ""
+   },
+   {
+    "title": "Email reminders + templates",
+    "tier": "core",
+    "phase": 1,
+    "note": ""
+   }
+  ],
+  "ai": "AI ASSIST — AI assists administrative appointment scheduling using practitioner availability, travel times, booking-duration rules and cancellation information; it does not determine clinical priority.",
+  "amount": 1750
+ },
+ {
+  "n": 8,
+  "name": "Goal & Clinical Reporting",
+  "features": [
+   {
+    "title": "Chronological clinical timeline",
+    "tier": "core",
+    "phase": 1,
+    "note": ""
+   },
+   {
+    "title": "Practitioner-completed BAR reporting template with non-clinical pre-filling only",
+    "tier": "core",
+    "phase": 1,
+    "note": ""
+   },
+   {
+    "title": "Practitioner-completed CBSP reporting template with non-clinical pre-filling only",
+    "tier": "core",
+    "phase": 1,
+    "note": ""
+   },
+   {
+    "title": "CBSP version control",
+    "tier": "core",
+    "phase": 1,
+    "note": ""
+   },
+   {
+    "title": "Goal progress logging against every session",
+    "tier": "core",
+    "phase": 1,
+    "note": ""
+   },
+   {
+    "title": "Implementation plan across every environment",
+    "tier": "core",
+    "phase": 1,
+    "note": ""
+   },
+   {
+    "title": "Training delivered & logged (staff/family)",
+    "tier": "core",
+    "phase": 1,
+    "note": ""
+   },
+   {
+    "title": "Practitioner-prepared SIL training materials template with non-clinical pre-filling only",
+    "tier": "optional",
+    "phase": 2,
+    "note": ""
+   },
+   {
+    "title": "Individualised clinical resource library",
+    "tier": "optional",
+    "phase": 2,
+    "note": ""
+   }
+  ],
+  "ai": "AI ASSIST — AI pre-fills non-clinical details in practitioner-completed BAR, CBSP and SIL training templates and provides administrative reminders. Practitioners prepare all clinical substance and assess goal progress.",
+  "amount": 1950
+ },
+ {
+  "n": 9,
+  "name": "Billing & Claims",
+  "features": [
+   {
+    "title": "Billable time logging as tasks",
+    "tier": "core",
+    "phase": 1,
+    "note": ""
+   },
+   {
+    "title": "Consult vs travel time split + telehealth flag",
+    "tier": "core",
+    "phase": 1,
+    "note": ""
+   },
+   {
+    "title": "AI-assisted billing reconciliation & invoice drafting",
+    "tier": "core",
+    "phase": 1,
+    "note": ""
+   },
+   {
+    "title": "Recurring batch invoice generation",
+    "tier": "core",
+    "phase": 1,
+    "note": ""
+   },
+   {
+    "title": "Invoicing and billing (even if manual on day one)",
+    "tier": "core",
+    "phase": 1,
+    "note": ""
+   },
+   {
+    "title": "NDIS bulk-payment CSV / claim generation",
+    "tier": "core",
+    "phase": 1,
+    "note": ""
+   },
+   {
+    "title": "NDIA bulk claim upload & automatic NDIS price guide updates",
+    "tier": "optional",
+    "phase": 2,
+    "note": ""
+   },
+   {
+    "title": "Plan-managed itemised PDF invoices",
+    "tier": "core",
+    "phase": 1,
+    "note": ""
+   },
+   {
+    "title": "Self-managed direct invoicing",
+    "tier": "core",
+    "phase": 1,
+    "note": ""
+   },
+   {
+    "title": "NDIS line-item/support-code assignment",
+    "tier": "core",
+    "phase": 1,
+    "note": ""
+   },
+   {
+    "title": "Xero integration — invoice creation in Xero",
+    "tier": "optional",
+    "phase": 2,
+    "note": ""
+   },
+   {
+    "title": "HICAPS/LanternPay payment integration",
+    "tier": "optional",
+    "phase": 3,
+    "note": ""
+   },
+   {
+    "title": "Funding-period cutoff validation on billing",
+    "tier": "core",
+    "phase": 1,
+    "note": ""
+   }
+  ],
+  "ai": "AI ASSIST — AI reconciles billable time and session data against draft invoices and the NDIS claim file, flagging mismatches before submission.",
+  "amount": 2950
+ },
+ {
+  "n": 10,
+  "name": "Compliance & Funding Tracking",
+  "features": [
+   {
+    "title": "Restrictive practice logging & compliance register",
+    "tier": "core",
+    "phase": 1,
+    "note": ""
+   },
+   {
+    "title": "NDIS plan dates vs BSP review dates tracked separately",
+    "tier": "core",
+    "phase": 1,
+    "note": ""
+   },
+   {
+    "title": "Funds/plan balance & expiry tracking with requested-vs-approved comparison",
+    "tier": "core",
+    "phase": 1,
+    "note": ""
+   }
+  ],
+  "ai": "AI ASSIST — Automated checks flag missing authorisation records, approaching plan/BSP dates and other recorded administrative deadlines for practitioner review; no clinical or legal compliance determination is generated.",
+  "amount": 650
+ },
+ {
+  "n": 11,
+  "name": "Plan Review & Renewal",
+  "features": [
+   {
+    "title": "Pre-reassessment readiness check",
+    "tier": "core",
+    "phase": 1,
+    "note": ""
+   },
+   {
+    "title": "Progress report & separate recommendation report",
+    "tier": "core",
+    "phase": 1,
+    "note": ""
+   },
+   {
+    "title": "NDIS decision recording against the referral",
+    "tier": "core",
+    "phase": 1,
+    "note": ""
+   },
+   {
+    "title": "Renewal of services on plan renewal",
+    "tier": "core",
+    "phase": 1,
+    "note": ""
+   }
+  ],
+  "ai": "AI ASSIST — Practitioner-completed progress and recommendation report templates, pre-filled with non-clinical identity, funding and date details only; no AI-generated clinical content.",
+  "amount": 900
+ },
+ {
+  "n": 12,
+  "name": "Discharge & Offboarding",
+  "features": [
+   {
+    "title": "Early escalation of inadequate funding",
+    "tier": "core",
+    "phase": 1,
+    "note": ""
+   },
+   {
+    "title": "Final report on closure",
+    "tier": "core",
+    "phase": 1,
+    "note": ""
+   },
+   {
+    "title": "Record archiving with reactivation",
+    "tier": "core",
+    "phase": 1,
+    "note": ""
+   }
+  ],
+  "ai": "AI ASSIST — Practitioner-completed final closure report template, pre-filled with non-clinical details only; administrative funding and deadline reminders may be generated.",
+  "amount": 650
+ },
+ {
+  "n": 13,
+  "name": "Task Management & Internal Comms",
+  "features": [
+   {
+    "title": "Task creation/assignment with status + audit trail",
+    "tier": "core",
+    "phase": 1,
+    "note": ""
+   },
+   {
+    "title": "Internal chat/messaging tool",
+    "tier": "core",
+    "phase": 1,
+    "note": ""
+   },
+   {
+    "title": "In-CRM self-help AI assistant",
+    "tier": "optional",
+    "phase": 2,
+    "note": ""
+   }
+  ],
+  "ai": "AI ASSIST — An in-CRM AI assistant answers staff \"how do I…\" questions on demand and surfaces overdue or at-risk tasks automatically.",
+  "amount": 650
+ },
+ {
+  "n": 14,
+  "name": "Client Portal",
+  "features": [
+   {
+    "title": "Client/family self-serve portal (core)",
+    "tier": "optional",
+    "phase": 2,
+    "note": ""
+   },
+   {
+    "title": "Client portal: finalised reports & documents",
+    "tier": "optional",
+    "phase": 2,
+    "note": ""
+   },
+   {
+    "title": "Client portal: financial statement/invoice history",
+    "tier": "optional",
+    "phase": 2,
+    "note": ""
+   },
+   {
+    "title": "Client portal: request a meeting or report",
+    "tier": "optional",
+    "phase": 2,
+    "note": ""
+   },
+   {
+    "title": "Client portal: secure two-way messaging with clinician",
+    "tier": "optional",
+    "phase": 2,
+    "note": ""
+   }
+  ],
+  "ai": "AI ASSIST — The portal shares finalised practitioner-prepared and approved clinical reports and documents. AI does not draft or summarise clinical reports for families.",
+  "amount": 650
+ },
+ {
+  "n": 15,
+  "name": "Shared Participant Hub / MDT Collaboration (M-Powered Connect)",
+  "features": [
+   {
+    "title": "Participant-specific external MDT workspace",
+    "tier": "optional",
+    "phase": 2,
+    "note": ""
+   },
+   {
+    "title": "Invite & manage MDT members with role templates",
+    "tier": "optional",
+    "phase": 2,
+    "note": ""
+   },
+   {
+    "title": "Consent gate for Hub access",
+    "tier": "optional",
+    "phase": 2,
+    "note": ""
+   },
+   {
+    "title": "Controlled document publishing (versioned)",
+    "tier": "optional",
+    "phase": 2,
+    "note": ""
+   },
+   {
+    "title": "Controlled external uploads (Awaiting Review queue)",
+    "tier": "optional",
+    "phase": 2,
+    "note": ""
+   },
+   {
+    "title": "Participant-scoped secure messaging with reply-capture",
+    "tier": "optional",
+    "phase": 2,
+    "note": ""
+   },
+   {
+    "title": "Structured information requests & document acknowledgements",
+    "tier": "optional",
+    "phase": 2,
+    "note": ""
+   },
+   {
+    "title": "MDT meetings, actions & participant timeline",
+    "tier": "optional",
+    "phase": 2,
+    "note": ""
+   },
+   {
+    "title": "Full audit trail with tenant/participant isolation",
+    "tier": "optional",
+    "phase": 2,
+    "note": ""
+   }
+  ],
+  "ai": "AI ASSIST — AI identifies outstanding administrative document requests, task assignments and meeting actions from practitioner-entered records without generating clinical discussion summaries or recommendations.",
+  "amount": 650
+ },
+ {
+  "n": 16,
+  "name": "Reporting & Analytics / Dashboards",
+  "features": [
+   {
+    "title": "Pending service agreement dashboard",
+    "tier": "core",
+    "phase": 1,
+    "note": ""
+   },
+   {
+    "title": "Funding-at-a-glance dashboard",
+    "tier": "core",
+    "phase": 1,
+    "note": ""
+   },
+   {
+    "title": "Behaviour-data dashboard",
+    "tier": "core",
+    "phase": 1,
+    "note": ""
+   },
+   {
+    "title": "Automated deadline & risk alerts",
+    "tier": "core",
+    "phase": 1,
+    "note": ""
+   },
+   {
+    "title": "Incident reporting with AI field-completeness check",
+    "tier": "core",
+    "phase": 1,
+    "note": ""
+   },
+   {
+    "title": "Stakeholder reporting (funder/GP/family)",
+    "tier": "core",
+    "phase": 1,
+    "note": ""
+   },
+   {
+    "title": "Practitioner utilisation dashboard",
+    "tier": "core",
+    "phase": 1,
+    "note": ""
+   },
+   {
+    "title": "Compliance/overdue items dashboard",
+    "tier": "core",
+    "phase": 1,
+    "note": ""
+   },
+   {
+    "title": "Email delivery of reports & invoices to clients/stakeholders",
+    "tier": "core",
+    "phase": 1,
+    "note": ""
+   }
+  ],
+  "ai": "AI ASSIST — AI prepares administrative dashboard alerts and checks practitioner-entered incident report fields for completeness. Incident descriptions and clinical interpretation are prepared by practitioners.",
+  "amount": 1950
+ },
+ {
+  "n": 17,
+  "name": "Integrations",
+  "features": [
+   {
+    "title": "Migration tooling for practices switching platforms",
+    "tier": "optional",
+    "phase": 2,
+    "note": ""
+   },
+   {
+    "title": "SMS integration for subscribed clients — general two-way communications (beyond automated appointment reminders)",
+    "tier": "optional",
+    "phase": 2,
+    "note": "For subscribed practices wanting SMS as a client-communication channel, not just booking reminders."
+   }
+  ],
+  "ai": "AI ASSIST — AI-assisted data mapping speeds up migrating a new practice's historical records from their existing CRM into Pathways.",
+  "amount": 450
+ },
+ {
+  "n": 18,
+  "name": "AI Layer & SaaS Business Operations",
+  "features": [
+   {
+    "title": "AI alert summaries",
+    "tier": "core",
+    "phase": 1,
+    "note": ""
+   },
+   {
+    "title": "Sales, onboarding & support AI agents",
+    "tier": "core",
+    "phase": 1,
+    "note": ""
+   },
+   {
+    "title": "SaaS-operator (admin) dashboard, accessed via a dedicated super-admin login separate from business-tenant accounts — covering active organisations, subscribed users, MRR, churn, AI usage and overall platform running costs",
+    "tier": "core",
+    "phase": 1,
+    "note": ""
+   }
+  ],
+  "ai": "AI ASSIST — The AI layer supports administrative sales, onboarding, user help and date/task alerts only, within the limits of clause 14.4. No clinical drafting, assessment or treatment recommendation functions are included.",
+  "amount": 2400
+ }
+]
