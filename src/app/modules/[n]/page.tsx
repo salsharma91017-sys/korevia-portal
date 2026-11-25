@@ -4,7 +4,6 @@ import { requireSession } from "@/lib/auth";
 import { getModule, moduleDetail } from "@/lib/data";
 import { fmtDate, fmtMoney } from "@/lib/format";
 import { signedUrls } from "@/lib/storage";
-import { serverEnv } from "@/lib/env";
 import { StatusPill } from "@/components/Pill";
 import StatusTab from "./tabs/StatusTab";
 import ScopeTab from "./tabs/ScopeTab";
@@ -38,7 +37,8 @@ export default async function ModulePage({ params, searchParams }: Props) {
   const packPaths = d.runs.map((r) => r.pack_path).filter((p): p is string => Boolean(p));
   const urls = await signedUrls(tab === "guide" ? shotPaths : tab === "results" ? [...shotPaths, ...manualPaths] : tab === "evidence" ? [...packPaths, ...manualPaths] : tab === "status" ? packPaths.slice(0, 1) : []);
 
-  const defaultUat = serverEnv().DEFAULT_UAT_URL ?? null;
+  // A plain read: this page must never fail just because a server-only setting is missing or malformed.
+  const defaultUat = /^https:\/\/\S+$/.test(process.env.DEFAULT_UAT_URL ?? "") ? (process.env.DEFAULT_UAT_URL as string) : null;
 
   return (
     <main className="portal">

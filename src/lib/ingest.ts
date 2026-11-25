@@ -6,7 +6,7 @@ import { serverEnv } from "@/lib/env";
 /** Checks the shared secret that lets the Pathways CI push in. Returns an error response, or null when allowed. */
 export function checkIngestToken(request: Request): NextResponse | null {
   const expected = serverEnv().INGEST_TOKEN;
-  if (!expected) return NextResponse.json({ error: "Ingest is not configured on this portal." }, { status: 503 });
+  if (!expected || expected.length < 32) return NextResponse.json({ error: "Ingest is not configured on this portal (INGEST_TOKEN missing or shorter than 32 characters)." }, { status: 503 });
   const header = request.headers.get("authorization") ?? "";
   const given = header.startsWith("Bearer ") ? header.slice(7) : "";
   const a = Buffer.from(given);

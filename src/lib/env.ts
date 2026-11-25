@@ -25,8 +25,8 @@ export function serverEnv() {
     .object({
       SUPABASE_SECRET_KEY: z.string().min(1),
       SUPABASE_PROJECT_REF: z.string().min(1),
-      INGEST_TOKEN: z.string().min(32).optional(),
-      DEFAULT_UAT_URL: z.string().url().optional(),
+      INGEST_TOKEN: z.string().optional(), // length is checked where it is used (the ingest endpoints)
+      DEFAULT_UAT_URL: z.string().optional(),
     })
     .safeParse({
       SUPABASE_SECRET_KEY: process.env.SUPABASE_SECRET_KEY,
