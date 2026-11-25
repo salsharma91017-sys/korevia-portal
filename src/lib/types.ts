@@ -31,4 +31,5 @@ export type AcceptanceRow = {
   id: string; module_n: number; by_name: string; by_email: string; typed_name: string; comment: string | null; amount_cents: number;
   run_id: string | null; commit_sha: string | null; summary: Record<string, unknown>; accepted_at: string;
 };
-export type ProfileRow = { id: string; email: string; full_name: string | null; role: "owner" | "client" | "tester" | "viewer"; created_at: string };
+export type ProfileRow = { id: string; email: string; full_name: string | null; role: "owner" | "client" | "tester" | "viewer"; notify_email: boolean; created_at: string };
+export type NotificationLogRow = { id: number; created_at: string; event: string; module_n: number | null; to_email: string; subject: string; ok: boolean; detail: string | null };

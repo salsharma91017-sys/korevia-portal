@@ -48,6 +48,29 @@ Sign-in is email and password. Acceptance is recorded with the person's name, a 
 - The client tests with the Test guide (and records results under Results), then accepts or requests changes. A change request puts the module back to *In development*; when you resubmit, open requests are marked resolved.
 - Target dates come from the signed agreement: enter them on each module (the build price is already loaded).
 
+## Email notifications
+
+The portal emails people when something needs their attention (sent through Resend, branded with the KoreVia logo):
+
+- **Ready for review**: every client with emails switched on.
+- **Accepted** and **Changes requested**: every owner and every client with emails switched on (the person who acted gets a copy as their receipt).
+
+Every attempt is listed under *People, Email notifications, Recent emails*, with the reason if one did not go. Each person's emails can be switched off on the People page.
+
+Set-up (once; the keys are entered by you in Resend and Vercel, never in chat):
+
+1. Create a free Resend account that KoreVia owns (this is separate from the Resend account Pathways uses for the client's own emails).
+2. In Resend, Domains, add `korevia.solutions`. Resend shows a few DNS records (SPF and DKIM). Add them exactly as shown in the DNS for korevia.solutions, then press Verify. Do not change anything at the client's DNS.
+3. In Resend, API Keys, create a key with *Sending access* only.
+4. In the portal's Vercel project, Settings, Environment Variables, add `RESEND_API_KEY` (mark it Sensitive). Optional: `EMAIL_FROM` (default `KoreVia Client Portal <portal@korevia.solutions>`; the address must be on the verified domain) and `EMAIL_REPLY_TO` (default `admin@korevia.solutions`).
+5. Redeploy, sign in as owner, open People and press *Send me a test email*.
+
+Until the key is set the portal works as before and the People page shows "Email is not set up yet".
+
+## Branding
+
+Colours, fonts and logos match the KoreVia CompIQ site (navy and teal, Barlow Condensed and Public Sans). The logos are loaded from `https://compiq.korevia.solutions/assets/brand/`; the addresses are all in `src/lib/brand.ts`. The services text ("Built and supported by KoreVia Solutions") is in `src/lib/brand.ts` and `src/components/ServicesBand.tsx`.
+
 ## Developing
 
 ```
@@ -67,7 +90,6 @@ Never commit `.env*` files or keys. The service-role key only ever lives in Verc
 
 ## Not built yet
 
-- Email notifications (ready for review, accepted, changes requested).
 - Password reset by the person (for now KoreVia resets it in Supabase).
 - Authenticator codes at sign-in (chosen: email and password only for now).
 - A view of the database test report and change report per module (the Browser tests run is what is shown).

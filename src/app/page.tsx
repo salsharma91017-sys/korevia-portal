@@ -3,6 +3,7 @@ import { requireSession } from "@/lib/auth";
 import { latestRuns, listModules } from "@/lib/data";
 import { fmtDate, fmtMoney, STATUS_LABEL, STATUS_ORDER } from "@/lib/format";
 import { StatusPill } from "@/components/Pill";
+import { ServicesBand } from "@/components/ServicesBand";
 
 export default async function Home() {
   await requireSession();
@@ -13,6 +14,7 @@ export default async function Home() {
 
   return (
     <main className="portal">
+      <p className="eyebrow dark">Client portal</p>
       <h1>M-Powered Pathways build</h1>
       <p className="lead">Progress, test results and acceptance for each of the 18 modules in Schedule A.</p>
 
@@ -52,6 +54,7 @@ export default async function Home() {
         </table>
       </div>
       <p className="hint">Amounts are the module build costs in section 5 of the agreement. Payment falls due when a module is accepted.</p>
+      <ServicesBand />
     </main>
   );
 }

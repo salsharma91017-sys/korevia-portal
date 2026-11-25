@@ -48,4 +48,32 @@ begin
     if v_msg <> 'append_only' then raise; end if;
   end;
 end $$;
+
+-- email notifications: switched on by default; the log is readable by the owner only
+do $$
+declare v_viewer uuid; v_owner uuid; v_n integer;
+begin
+  select id into v_viewer from public.profiles where email = 'viewer@example.test';
+  if not (select notify_email from public.profiles where id = v_viewer) then raise exception 'notify_email should default to true'; end if;
+
+  insert into auth.users (email) values ('owner@example.test') returning id into v_owner;
+  update public.profiles set role = 'owner' where id = v_owner;
+  insert into public.notification_log (event, module_n, to_email, subject, ok, detail) values ('test', null, 'x@example.test', 's', true, 'id');
+
+  perform set_config('request.jwt.claims', json_build_object('sub', v_owner)::text, true);
+  set local role authenticated;
+  select count(*) into v_n from public.notification_log;
+  if v_n <> 1 then raise exception 'owner should read the email log, saw %', v_n; end if;
+  reset role;
+
+  perform set_config('request.jwt.claims', json_build_object('sub', v_viewer)::text, true);
+  set local role authenticated;
+  select count(*) into v_n from public.notification_log;
+  if v_n <> 0 then raise exception 'viewer must not read the email log, saw %', v_n; end if;
+  begin
+    insert into public.notification_log (event, to_email, subject, ok) values ('test', 'y@example.test', 's', true);
+    raise exception 'signed-in user must not be able to write the email log';
+  exception when insufficient_privilege then null; end;
+  reset role;
+end $$;
 select 'ALL PORTAL DATABASE TESTS PASSED' as result;

@@ -7,6 +7,7 @@ import { z } from "zod";
 import { can, requireRole, requireSession, type Session } from "@/lib/auth";
 import { createAdminClient } from "@/lib/supabase/admin";
 import { BUCKET } from "@/lib/storage";
+import { notifyModuleEvent } from "@/lib/notify";
 import type { ModuleRow, RunRow } from "@/lib/types";
 
 const num = z.coerce.number().int().min(1).max(99);
@@ -47,8 +48,10 @@ export async function setStatus(formData: FormData) {
   if (m!.status === to.data) back(n, "status", "error", "The module already has that status.");
 
   const db = createAdminClient();
+  let testLine: string | null = null;
   if (to.data === "ready_for_review") {
     const run = await latestRun(n);
+    testLine = run ? `${run.passed} of ${run.total} passed` : null;
     if (!run && !acknowledge) back(n, "status", "error", "There is no automatic test run for this module yet. Tick the box to send it for review anyway.");
     if (run && run.failed > 0 && !acknowledge) back(n, "status", "error", `The latest automatic run has ${run.failed} failing test(s). Fix them, or tick the box to send it for review anyway.`);
     await db.from("change_requests").update({ resolved_at: new Date().toISOString(), resolved_note: note ?? "Addressed in the resubmitted module" })
@@ -57,6 +60,9 @@ export async function setStatus(formData: FormData) {
   const { error } = await db.from("modules").update({ status: to.data, status_changed_at: new Date().toISOString(), status_changed_by: s.userId }).eq("n", n);
   if (error) back(n, "status", "error", "Could not save the status. Please try again.");
   await logStatus(s, n, m!.status, to.data, note);
+  if (to.data === "ready_for_review") {
+    notifyModuleEvent({ event: "ready_for_review", moduleN: n, moduleName: m!.name, actor: s.name, note, testLine });
+  }
   back(n, "status", "ok", `Status changed to ${to.data.replace(/_/g, " ")}.`);
 }
 
@@ -105,6 +111,10 @@ export async function acceptModule(formData: FormData) {
   if (error) back(n, "status", "error", "Could not record the acceptance. Please try again.");
   await db.from("modules").update({ status: "accepted", status_changed_at: new Date().toISOString(), status_changed_by: s.userId }).eq("n", n);
   await logStatus(s, n, m!.status, "accepted", comment);
+  notifyModuleEvent({
+    event: "accepted", moduleN: n, moduleName: m!.name, actor: s.name, note: comment,
+    testLine: run ? `${run.passed} of ${run.total} passed` : null,
+  });
   back(n, "evidence", "ok", "Module accepted. The acceptance is recorded below.");
 }
 
@@ -119,6 +129,7 @@ export async function requestChanges(formData: FormData) {
   await db.from("change_requests").insert({ module_n: n, by_id: s.userId, by_name: s.name, body: body.slice(0, 4000) });
   await db.from("modules").update({ status: "in_development", status_changed_at: new Date().toISOString(), status_changed_by: s.userId }).eq("n", n);
   await logStatus(s, n, m!.status, "in_development", "Changes requested");
+  notifyModuleEvent({ event: "changes_requested", moduleN: n, moduleName: m!.name, actor: s.name, note: body });
   back(n, "status", "ok", "Changes requested. The module is back in development.");
 }
 

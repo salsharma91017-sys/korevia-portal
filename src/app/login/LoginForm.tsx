@@ -13,7 +13,6 @@ export default function LoginForm() {
       <input id="password" name="password" type="password" autoComplete="current-password" required />
       {state?.error && <p className="error" role="alert">{state.error}</p>}
       <button type="submit" disabled={pending}>{pending ? "Signing in..." : "Sign in"}</button>
-      <p className="hint">Forgotten your password? Ask KoreVia to reset it.</p>
     </form>
   );
 }
