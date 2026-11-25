@@ -46,8 +46,12 @@ export async function POST(request: Request) {
   const b = parsed.data;
   const db = createAdminClient();
 
-  const { data: mod } = await db.from("modules").select("n").eq("n", b.module).maybeSingle();
-  if (!mod) return NextResponse.json({ error: "Unknown module" }, { status: 400 });
+  const { data: mod, error: modError } = await db.from("modules").select("n").eq("n", b.module).maybeSingle();
+  if (modError) {
+    // Usually the server key in Vercel (SUPABASE_SECRET_KEY) is wrong or belongs to a different Supabase project.
+    return NextResponse.json({ error: "The portal could not read its own database. Check SUPABASE_SECRET_KEY and SUPABASE_PROJECT_REF in Vercel.", detail: modError.message, code: modError.code }, { status: 500 });
+  }
+  if (!mod) return NextResponse.json({ error: `Module ${b.module} is not in the portal database. Run the two migration files, in order, in the portal's Supabase project.` }, { status: 400 });
 
   // Guides and their cases (the latest push wins) -------------------------------------------------
   for (const g of b.guides) {
