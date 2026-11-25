@@ -76,7 +76,8 @@ export default function EvidenceTab({ d, urls }: { d: Detail; urls: Record<strin
               {fmtDate(n.note_date)} &middot; {n.title}{" "}
               {n.note_type && badge(n.note_type)}{" "}
               {n.deviation && n.deviation !== "none" && badge(`Differs from: ${n.deviation}`, "in_development")}{" "}
-              {n.needs_approval && n.needs_approval !== "none" && badge("Needs approval", "ready_for_review")}
+              {n.needs_approval && /^approved/i.test(n.needs_approval) && badge("Approved by client", "accepted")}
+              {n.needs_approval && n.needs_approval !== "none" && !/^approved/i.test(n.needs_approval) && badge("Needs approval", "ready_for_review")}
             </summary>
             {n.migrations && n.migrations !== "none" && <p className="hint">Database changes: {n.migrations}</p>}
             <GuideView md={n.body_md} shots={{}} />

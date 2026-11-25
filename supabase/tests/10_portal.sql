@@ -81,4 +81,9 @@ begin
   if (select paid_cents from public.modules where n = 1) <> 500000 then raise exception 'module 1 should be marked paid ($5,000)'; end if;
   if (select count(*) from public.modules where paid_cents > 0) <> 1 then raise exception 'only module 1 should be marked paid'; end if;
 end $$;
+do $$
+begin
+  if (select title from public.features where module_n = 1 and sort = 1) not like '%Practice ID%' then raise exception 'module 1 line 1 should show the agreed Practice ID wording'; end if;
+  if (select note from public.features where module_n = 1 and sort = 1) not like '%approved by Dee in writing%' then raise exception 'module 1 line 1 should record the approval'; end if;
+end $$;
 select 'ALL PORTAL DATABASE TESTS PASSED' as result;
