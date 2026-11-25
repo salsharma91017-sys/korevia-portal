@@ -24,6 +24,7 @@ export type NotifyInput = {
   actor: string; // who did it (display name)
   note?: string | null; // owner's note, sign-off comment, or the change request text
   testLine?: string | null; // e.g. "39 of 39 automatic tests passed"
+  prepaid?: boolean; // the module is already paid for (Module 1: the project initiation fee)
 };
 
 type Recipient = { email: string; name: string };
@@ -156,7 +157,9 @@ export function buildEmail(input: NotifyInput, recipientName: string): Built {
       quote: note ? { label: "Comment with the sign-off", body: note } : null,
       buttonLabel: "View the acceptance record",
       buttonUrl: `${base}/modules/${input.moduleN}?tab=evidence`,
-      closing: "Any invoicing follows the agreement; KoreVia will be in touch separately about that.",
+      closing: input.prepaid
+        ? "This module is covered by the project initiation fee, which has already been paid, so no invoice follows."
+        : "Any invoicing follows the agreement; KoreVia will be in touch separately about that.",
     });
     return { subject: `[KoreVia Portal] ${mod} accepted`, ...r };
   }

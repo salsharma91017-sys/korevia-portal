@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { requireSession } from "@/lib/auth";
 import { latestRuns, listModules } from "@/lib/data";
-import { fmtDate, fmtMoney, STATUS_LABEL, STATUS_ORDER } from "@/lib/format";
+import { fmtDate, fmtMoney, isPaid, STATUS_LABEL, STATUS_ORDER } from "@/lib/format";
 import { StatusPill } from "@/components/Pill";
 import { ServicesBand } from "@/components/ServicesBand";
 
@@ -9,7 +9,7 @@ export default async function Home() {
   await requireSession();
   const [modules, runs] = await Promise.all([listModules(), latestRuns()]);
   const counts = Object.fromEntries(STATUS_ORDER.map((s) => [s, modules.filter((m) => m.status === s).length]));
-  const accepted = modules.filter((m) => m.status === "accepted").reduce((a, m) => a + m.amount_cents, 0);
+  const paid = modules.reduce((a, m) => a + m.paid_cents, 0);
   const total = modules.reduce((a, m) => a + m.amount_cents, 0);
 
   return (
@@ -22,13 +22,14 @@ export default async function Home() {
         {STATUS_ORDER.map((s) => (
           <div className="stat" key={s}><b>{counts[s]}</b><span>{STATUS_LABEL[s]}</span></div>
         ))}
-        <div className="stat"><b>{fmtMoney(accepted)}</b><span>accepted of {fmtMoney(total)}</span></div>
+        <div className="stat"><b>{fmtMoney(paid)}</b><span>paid of {fmtMoney(total)}</span></div>
+        <div className="stat"><b>{fmtMoney(total - paid)}</b><span>invoiced as modules are accepted</span></div>
       </div>
 
       <div className="card" style={{ padding: 0, overflowX: "auto" }}>
         <table>
           <thead>
-            <tr><th>#</th><th>Module</th><th>Status</th><th>Target date</th><th>Latest automatic tests</th><th className="right">On acceptance</th></tr>
+            <tr><th>#</th><th>Module</th><th>Status</th><th>Target date</th><th>Latest automatic tests</th><th className="right">Payment</th></tr>
           </thead>
           <tbody>
             {modules.map((m) => {
@@ -46,14 +47,16 @@ export default async function Home() {
                       <span className="muted">No run yet</span>
                     )}
                   </td>
-                  <td className="right">{fmtMoney(m.amount_cents)}</td>
+                  <td className="right">
+                    {isPaid(m) ? <><span className="pill pass">Paid</span> <span className="muted">{fmtMoney(m.amount_cents)}</span></> : <>{fmtMoney(m.amount_cents)} <span className="muted">on acceptance</span></>}
+                  </td>
                 </tr>
               );
             })}
           </tbody>
         </table>
       </div>
-      <p className="hint">Amounts are the module build costs in section 5 of the agreement. Payment falls due when a module is accepted.</p>
+      <p className="hint">Amounts are the module build costs in section 5 of the agreement. Module 1 is covered by the $5,000 project initiation fee, which has been paid. Every other module is invoiced when it is accepted.</p>
       <ServicesBand />
     </main>
   );

@@ -19,7 +19,7 @@ export default function EvidenceTab({ d, urls }: { d: Detail; urls: Record<strin
           return (
             <div key={a.id} className="panel accent">
               <p><strong>Accepted by {a.by_name}</strong> ({a.by_email}) on {fmtDateTime(a.accepted_at)}. Signed off by typing: <em>{a.typed_name}</em>.</p>
-              <p>Payment triggered: {fmtMoney(a.amount_cents)}. Build: <span className="mono">{a.commit_sha?.slice(0, 7) ?? "n/a"}</span>.</p>
+              <p>{a.amount_cents === 0 ? "No invoice triggered (already paid)." : `Payment triggered: ${fmtMoney(a.amount_cents)}.`} Build: <span className="mono">{a.commit_sha?.slice(0, 7) ?? "n/a"}</span>.</p>
               <p className="muted">
                 At acceptance: {auto ? `${auto.passed} of ${auto.total} automatic tests passed` : "no automatic run"}; {manual?.pass ?? 0} passed and {manual?.fail ?? 0} failed by hand.
               </p>

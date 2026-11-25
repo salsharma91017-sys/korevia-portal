@@ -5,6 +5,9 @@ export const fmtDateTime = (iso: string | null | undefined) =>
   iso ? new Date(iso).toLocaleString("en-AU", { timeZone: TZ, day: "numeric", month: "short", year: "numeric", hour: "numeric", minute: "2-digit" }) : "";
 export const fmtMoney = (cents: number) => (cents / 100).toLocaleString("en-AU", { style: "currency", currency: "AUD", maximumFractionDigits: 0 });
 
+/** True when the module has been paid for in advance (for example Module 1, covered by the initiation fee). */
+export const isPaid = (m: { amount_cents: number; paid_cents: number }) => m.amount_cents > 0 && m.paid_cents >= m.amount_cents;
+
 export const STATUS_LABEL: Record<string, string> = {
   backlog: "Backlog",
   in_development: "In development",

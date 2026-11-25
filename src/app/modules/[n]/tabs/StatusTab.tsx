@@ -1,5 +1,5 @@
 import { can, type Session } from "@/lib/auth";
-import { fmtDate, fmtDateTime, fmtMoney, STATUS_LABEL, STATUS_ORDER } from "@/lib/format";
+import { fmtDate, fmtDateTime, fmtMoney, isPaid, STATUS_LABEL, STATUS_ORDER } from "@/lib/format";
 import { StatusPill } from "@/components/Pill";
 import type { ModuleRow } from "@/lib/types";
 import type { moduleDetail } from "@/lib/data";
@@ -27,7 +27,7 @@ export default function StatusTab({ m, d, session, defaultUat, packUrl }: { m: M
       <dl className="kv">
         <dt>Status since</dt><dd>{fmtDateTime(m.status_changed_at)}</dd>
         <dt>Target date</dt><dd>{fmtDate(m.due_date)}</dd>
-        <dt>Payment on acceptance</dt><dd>{fmtMoney(m.amount_cents)} (section 5 of the agreement)</dd>
+        <dt>Payment</dt><dd>{isPaid(m) ? <><span className="pill pass">Paid</span> {fmtMoney(m.amount_cents)}. {m.paid_note}</> : <>{fmtMoney(m.amount_cents)} on acceptance (section 5 of the agreement)</>}</dd>
         <dt>Test it</dt>
         <dd>{uat ? <a href={uat} target="_blank" rel="noreferrer">{uat}</a> : <span className="muted">No link yet</span>} <span className="hint">Test site. Use fake data only.</span></dd>
         <dt>Latest automatic tests</dt>
@@ -63,7 +63,7 @@ export default function StatusTab({ m, d, session, defaultUat, packUrl }: { m: M
       {can.accept(session.role) && m.status === "ready_for_review" && (
         <div className="panel accent">
           <h3>Your review</h3>
-          <p>Test the module using the Test guide, then accept it or ask for changes. Accepting confirms it meets the scope in Schedule A and falls due for payment ({fmtMoney(m.amount_cents)}).</p>
+          <p>Test the module using the Test guide, then accept it or ask for changes. Accepting confirms it meets the scope in Schedule A{isPaid(m) ? ". This module is already paid for, so accepting it does not trigger an invoice." : ` and falls due for payment (${fmtMoney(m.amount_cents)}).`}</p>
           <form action={acceptModule}>
             <input type="hidden" name="n" value={m.n} />
             <label className="inline"><input type="checkbox" name="confirm" /> This module meets the agreed scope</label>

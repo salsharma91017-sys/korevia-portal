@@ -2,7 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { requireSession } from "@/lib/auth";
 import { getModule, moduleDetail } from "@/lib/data";
-import { fmtDate, fmtMoney } from "@/lib/format";
+import { fmtDate, fmtMoney, isPaid } from "@/lib/format";
 import { signedUrls } from "@/lib/storage";
 import { StatusPill } from "@/components/Pill";
 import StatusTab from "./tabs/StatusTab";
@@ -48,7 +48,7 @@ export default async function ModulePage({ params, searchParams }: Props) {
         <StatusPill status={m.status} />
       </div>
       <p className="lead" style={{ margin: ".25rem 0 0" }}>
-        Target {fmtDate(m.due_date)} &middot; {fmtMoney(m.amount_cents)} on acceptance
+        Target {fmtDate(m.due_date)} &middot; {isPaid(m) ? `${fmtMoney(m.amount_cents)} paid` : `${fmtMoney(m.amount_cents)} on acceptance`}
       </p>
 
       <nav className="tabs" aria-label="Module sections">

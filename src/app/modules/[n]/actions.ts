@@ -9,6 +9,7 @@ import { createAdminClient } from "@/lib/supabase/admin";
 import { BUCKET } from "@/lib/storage";
 import { notifyModuleEvent } from "@/lib/notify";
 import type { ModuleRow, RunRow } from "@/lib/types";
+import { isPaid } from "@/lib/format";
 
 const num = z.coerce.number().int().min(1).max(99);
 
@@ -106,13 +107,13 @@ export async function acceptModule(formData: FormData) {
 
   const { error } = await db.from("acceptances").insert({
     module_n: n, by_id: s.userId, by_name: s.name, by_email: s.email, typed_name: typed, comment,
-    amount_cents: m!.amount_cents, run_id: run?.id ?? null, commit_sha: run?.commit_sha ?? null, summary,
+    amount_cents: isPaid(m!) ? 0 : m!.amount_cents, run_id: run?.id ?? null, commit_sha: run?.commit_sha ?? null, summary,
   });
   if (error) back(n, "status", "error", "Could not record the acceptance. Please try again.");
   await db.from("modules").update({ status: "accepted", status_changed_at: new Date().toISOString(), status_changed_by: s.userId }).eq("n", n);
   await logStatus(s, n, m!.status, "accepted", comment);
   notifyModuleEvent({
-    event: "accepted", moduleN: n, moduleName: m!.name, actor: s.name, note: comment,
+    event: "accepted", moduleN: n, moduleName: m!.name, actor: s.name, note: comment, prepaid: isPaid(m!),
     testLine: run ? `${run.passed} of ${run.total} passed` : null,
   });
   back(n, "evidence", "ok", "Module accepted. The acceptance is recorded below.");

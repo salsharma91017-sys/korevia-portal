@@ -2,6 +2,8 @@ export type ModuleRow = {
   n: number;
   name: string;
   amount_cents: number;
+  paid_cents: number;
+  paid_note: string | null;
   due_date: string | null;
   uat_url: string | null;
   ai_assist: string | null;

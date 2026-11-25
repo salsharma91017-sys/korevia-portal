@@ -76,4 +76,9 @@ begin
   exception when insufficient_privilege then null; end;
   reset role;
 end $$;
+do $$
+begin
+  if (select paid_cents from public.modules where n = 1) <> 500000 then raise exception 'module 1 should be marked paid ($5,000)'; end if;
+  if (select count(*) from public.modules where paid_cents > 0) <> 1 then raise exception 'only module 1 should be marked paid'; end if;
+end $$;
 select 'ALL PORTAL DATABASE TESTS PASSED' as result;
